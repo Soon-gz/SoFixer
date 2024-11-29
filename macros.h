@@ -52,12 +52,13 @@ typedef Elf64_Word Elf_Word;
 
 #ifndef TEMP_FAILURE_RETRY
 #define TEMP_FAILURE_RETRY(expression) \
-  (__extension__\
-   ({ long int __result;\
-       do __result = (long int)(expression);\
-       while(__result == -1L&& errno == EINTR);\
-       __result;}))
+  ([&]() -> long int { \
+    long int __result; \
+    do { \
+      __result = static_cast<long int>(expression); \
+    } while (__result == -1L && errno == EINTR); \
+    return __result; \
+  })()
 #endif
-
 
 #endif //FAOATDUMP_EXELF_H

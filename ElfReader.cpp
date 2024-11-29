@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <cstring>
 #include <fcntl.h>
-#include <unistd.h>
+#include "compat.h"
 #include <errno.h>
 #include <vector>
 

@@ -2,7 +2,6 @@
 #include "ObElfReader.h"
 #include "ElfRebuilder.h"
 #include "FDebug.h"
-#include <getopt.h>
 #include <stdio.h>
 
 #ifdef __SO64__
@@ -10,7 +9,11 @@
 #else
 #define TARGET_NAME "SoFixer32"
 #endif
-
+#ifdef _WIN32
+#include "getopt.h"
+#else
+#include <getopt.h>
+#endif
 
 const char* short_options = "hdm:s:o:b:";
 const struct option long_options[] = {
